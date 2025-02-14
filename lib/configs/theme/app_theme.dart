@@ -28,5 +28,28 @@ class AppTheme {
             ),
           ),
         ),
+        inputDecorationTheme: InputDecorationTheme(
+          hintStyle: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w400,
+            color: AppColors.grayLight,
+          ),
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 13,
+          ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: AppColors.gray),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: AppColors.gray),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: AppColors.primary),
+          ),
+        ),
       );
 }
