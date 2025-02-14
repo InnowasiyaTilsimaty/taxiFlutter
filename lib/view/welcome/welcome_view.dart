@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../configs/assets.dart';
+import '../../configs/routes/routes.dart';
 import '../../configs/theme/app_colors.dart';
 
 class WelcomeView extends StatelessWidget {
@@ -51,7 +52,10 @@ class WelcomeView extends StatelessWidget {
             ),
             const SizedBox(height: 14),
             OutlinedButton(
-              onPressed: () {},
+              onPressed: () => Navigator.pushNamed(
+                context,
+                RouteNames.signUp,
+              ),
               child: Text(
                 'Agza bol',
                 style: themeTheme.labelLarge,

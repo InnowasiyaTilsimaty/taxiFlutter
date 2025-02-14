@@ -11,6 +11,11 @@ final class AppTextTheme {
       fontWeight: FontWeight.w700,
       color: AppColors.black,
     ),
+    bodyLarge: TextStyle(
+      fontSize: 18,
+      fontWeight: FontWeight.w400,
+      color: AppColors.darkGray,
+    ),
     bodyMedium: TextStyle(
       fontSize: 16,
       fontWeight: FontWeight.w400,
@@ -20,6 +25,13 @@ final class AppTextTheme {
       fontSize: 16,
       fontWeight: FontWeight.w400,
       color: AppColors.black,
+    ),
+    bodySmall: TextStyle(
+      fontSize: 12,
+      fontWeight: FontWeight.w400,
+      color: AppColors.blue,
+      decoration: TextDecoration.underline,
+      decorationColor: AppColors.blue,
     ),
   );
 }

@@ -8,6 +8,7 @@ abstract final class RouteNames {
   static const splash = '/splash';
   static const welcome = '/welcome';
   static const home = '/home';
+  static const signUp = '/sign_up';
 }
 
 abstract final class Navigation {
@@ -17,5 +18,6 @@ abstract final class Navigation {
     RouteNames.splash: (_) => const SplashView(),
     RouteNames.welcome: (_) => const WelcomeView(),
     RouteNames.home: (_) => const HomeView(),
+    RouteNames.signUp: (_) => const SignUpView(),
   };
 }
