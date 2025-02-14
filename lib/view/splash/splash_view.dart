@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import '../../configs/assets.dart';
 import '../../configs/components/indicators.dart';
 import '../../configs/routes/routes.dart';
@@ -18,7 +17,7 @@ class _SplashViewState extends State<SplashView> {
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacementNamed(
         context,
-        RouteNames.home,
+        RouteNames.welcome,
       );
     });
   }
