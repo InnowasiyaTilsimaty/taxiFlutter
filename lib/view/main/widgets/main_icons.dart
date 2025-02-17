@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../configs/assets.dart';
 import '../../../view_model/order/order_view_model.dart';
+import 'widgets.dart';
 
 class MainIcons extends StatefulWidget {
   const MainIcons({super.key});
@@ -42,7 +43,12 @@ class _MainIconsState extends State<MainIcons> {
                 bottom: orderViewModel.isBottomSheetVisible ? 0 : 111,
               ),
               child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  showDialog<void>(
+                    context: context,
+                    builder: (context) => const AlertContactsDialog(),
+                  );
+                },
                 icon: SvgPicture.asset(Assets.call),
               ),
             ),
