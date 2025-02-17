@@ -21,17 +21,22 @@ final class AppTextTheme {
       fontWeight: FontWeight.w400,
       color: AppColors.white,
     ),
-    labelLarge: TextStyle(
-      fontSize: 16,
-      fontWeight: FontWeight.w400,
-      color: AppColors.black,
-    ),
     bodySmall: TextStyle(
       fontSize: 12,
       fontWeight: FontWeight.w400,
       color: AppColors.blue,
       decoration: TextDecoration.underline,
       decorationColor: AppColors.blue,
+    ),
+    labelLarge: TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w400,
+      color: AppColors.black,
+    ),
+    labelMedium: TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w600,
+      color: AppColors.black,
     ),
   );
 }

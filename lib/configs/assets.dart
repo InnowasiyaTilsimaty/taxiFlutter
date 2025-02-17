@@ -13,5 +13,8 @@ final class Assets {
   static const String menuBurger = 'assets/icons/menu-burger.svg';
   static const String call = 'assets/icons/call.svg';
   static const String myLocation = 'assets/icons/my-location.svg';
+  static const String maps = 'assets/icons/maps.svg';
   static const String x = 'assets/icons/x.svg';
+  static const String location = 'assets/icons/location.svg';
+  static const String finishFlag = 'assets/icons/finish-flag.svg';
 }

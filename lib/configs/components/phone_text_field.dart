@@ -66,10 +66,7 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
                     ),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 16.5,
-                    ),
+                    padding: const EdgeInsets.all(16),
                     child: Row(
                       spacing: 10,
                       children: [
