@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'app_colors.dart';
 import 'app_text_theme.dart';
+import 'app_theme_extension.dart';
 
 class AppTheme {
   static ThemeData get light => ThemeData(
@@ -10,6 +11,7 @@ class AppTheme {
         textTheme: AppTextTheme.lightTextTheme,
         useMaterial3: true,
         fontFamily: 'Onest',
+        extensions: const [textStyleLight],
         appBarTheme: const AppBarTheme(
           backgroundColor: AppColors.white,
           elevation: 0,
@@ -64,4 +66,8 @@ class AppTheme {
           ),
         ),
       );
+}
+
+extension BuildContextEx on BuildContext {
+  TextStylesEx get textThemeEx => Theme.of(this).extension<TextStylesEx>()!;
 }
