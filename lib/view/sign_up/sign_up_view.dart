@@ -34,6 +34,10 @@ class SignUpView extends StatelessWidget {
                   decoration: InputDecoration(
                     hintText: 'Referal code',
                     suffixIcon: IconButton(
+                      style: IconButton.styleFrom(
+                        backgroundColor: Colors.transparent,
+                        foregroundColor: Colors.black,
+                      ),
                       icon: SvgPicture.asset(Assets.qrcodeScan),
                       onPressed: () {},
                     ),

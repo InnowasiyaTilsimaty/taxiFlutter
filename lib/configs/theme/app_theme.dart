@@ -8,7 +8,13 @@ class AppTheme {
         primaryColor: AppColors.primary,
         brightness: Brightness.light,
         textTheme: AppTextTheme.lightTextTheme,
+        useMaterial3: true,
         fontFamily: 'Onest',
+        appBarTheme: const AppBarTheme(
+          backgroundColor: AppColors.white,
+          elevation: 0,
+          titleSpacing: 20,
+        ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             backgroundColor: AppColors.primary,
@@ -36,7 +42,7 @@ class AppTheme {
           ),
           contentPadding: const EdgeInsets.symmetric(
             horizontal: 16,
-            vertical: 13,
+            vertical: 10.5,
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
@@ -49,6 +55,12 @@ class AppTheme {
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: const BorderSide(color: AppColors.primary),
+          ),
+        ),
+        iconButtonTheme: IconButtonThemeData(
+          style: IconButton.styleFrom(
+            foregroundColor: Colors.white,
+            backgroundColor: AppColors.primary,
           ),
         ),
       );

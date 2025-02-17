@@ -11,4 +11,7 @@ final class Assets {
   static const String qrcodeScan = 'assets/icons/qrcode-scan.svg';
   static const String driver = 'assets/icons/driver.svg';
   static const String menuBurger = 'assets/icons/menu-burger.svg';
+  static const String call = 'assets/icons/call.svg';
+  static const String myLocation = 'assets/icons/my-location.svg';
+  static const String x = 'assets/icons/x.svg';
 }
