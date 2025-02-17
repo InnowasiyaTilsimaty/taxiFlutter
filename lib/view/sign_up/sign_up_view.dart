@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../configs/assets.dart';
 import '../../configs/components/phone_text_field.dart';
+import '../../configs/routes/routes.dart';
 
 class SignUpView extends StatelessWidget {
   const SignUpView({super.key});
@@ -47,7 +48,11 @@ class SignUpView extends StatelessWidget {
                 const PhoneTextField(),
                 const SizedBox(height: 16),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () => Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    RouteNames.main,
+                    (route) => false,
+                  ),
                   child: Text(
                     'Agza bol',
                     style: themeTheme.bodyMedium,
