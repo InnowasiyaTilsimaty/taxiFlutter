@@ -27,6 +27,7 @@ class _MainViewState extends State<MainView> {
       appBar: const MainAppBar(),
       body: Stack(
         children: [
+          const MapScreen(),
           Positioned(
             bottom: 47,
             left: 20,
