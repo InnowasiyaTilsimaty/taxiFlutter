@@ -21,6 +21,7 @@ class TaksistApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => getIt<OrderViewModel>()),
+        ChangeNotifierProvider(create: (context) => MapViewModel()),
       ],
       child: MaterialApp(
         title: 'Taksist',
