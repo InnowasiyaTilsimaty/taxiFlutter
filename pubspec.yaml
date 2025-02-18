@@ -15,6 +15,9 @@ dependencies:
   sheet: ^1.0.0
   get_it: ^8.0.3
   provider: ^6.1.2
+  
+  location: ^8.0.0
+  maplibre_gl: ^0.20.0
 
   cupertino_icons: ^1.0.8
 
