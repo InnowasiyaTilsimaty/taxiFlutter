@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sheet/sheet.dart';
 
+import '../../configs/snack_bar.dart';
+import '../../configs/theme/app_colors.dart';
 import '../view_model.dart';
 
 class OrderInProgressViewModel extends ChangeNotifier {
@@ -43,6 +45,14 @@ class OrderInProgressViewModel extends ChangeNotifier {
     _isBottomSheetVisible = false;
     _timer?.cancel();
     _start = 50;
+    showSnackBar(
+      'Sargyt ýatyryldy',
+      backgroundColor: AppColors.customGray,
+      margin: const EdgeInsets.symmetric(
+        horizontal: 20,
+        vertical: 70,
+      ),
+    );
   }
 
   void driverWaitingTime() {

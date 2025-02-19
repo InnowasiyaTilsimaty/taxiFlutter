@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 import 'configs/routes/routes.dart';
+import 'configs/snack_bar.dart';
 import 'configs/theme/app_theme.dart';
 import 'view_model/view_model.dart';
 
@@ -30,6 +31,7 @@ class TaksistApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: AppTheme.light,
         themeMode: ThemeMode.light,
+        scaffoldMessengerKey: scaffoldMessengerKey,
         initialRoute: RouteNames.splash,
         routes: Navigation.routes,
       ),

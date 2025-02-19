@@ -12,6 +12,7 @@ final class AppColors {
   static const Color red = Color(0xFFFF3030);
   static const Color primary = Color(0xFF2F57D3);
   static const Color blue = Color(0xFF0000FF);
+  static const Color customGray = Color(0xFF555555);
   static const Color darkGray = Color(0xFF262628);
   static const Color black = Color(0xFF000000);
 }
