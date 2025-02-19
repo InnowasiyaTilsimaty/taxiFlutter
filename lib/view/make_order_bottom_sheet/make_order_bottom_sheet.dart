@@ -48,7 +48,8 @@ class MakeOrderBottomSheet extends StatelessWidget {
               const MakeOrderTile(),
               const SizedBox(height: 12),
               ElevatedButton(
-                onPressed: () => context.read<MakeOrderViewModel>().closeBottomSheet(context),
+                onPressed: () =>
+                    context.read<MakeOrderViewModel>().continueOrder(context),
                 child: Text(
                   'Dowam etmek',
                   style: textTheme.bodyMedium,

@@ -47,7 +47,12 @@ class MakeOrderViewModel extends ChangeNotifier {
     _isBottomSheetVisible = true;
   }
 
-  void closeBottomSheet(BuildContext context) {
+  void continueOrder(BuildContext context) {
+    context.read<OrderInProgressViewModel>().openBottomSheet(context);
+    closeBottomSheet(context, openOrderBottomSheet: false);
+  }
+
+  void closeBottomSheet(BuildContext context, {bool openOrderBottomSheet = true}) {
     if (_isBottomSheetVisible) {
       _sheetController
           .animateTo(
@@ -57,7 +62,9 @@ class MakeOrderViewModel extends ChangeNotifier {
       )
           .then((_) {
         clearAddressControllers();
-        context.read<OrderViewModel>().openBottomSheet();
+        if (openOrderBottomSheet) {
+          context.read<OrderViewModel>().openBottomSheet();
+        }
         _isBottomSheetVisible = false;
       });
     }

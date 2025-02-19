@@ -1,4 +1,5 @@
 export '../../make_order_bottom_sheet/make_order_bottom_sheet.dart';
+export '../../order_in_progress_bottom_sheet/order_in_progress_bottom_sheet.dart';
 export 'alert_contacts_dialog.dart';
 export 'main_app_bar.dart';
 export 'main_icons.dart';

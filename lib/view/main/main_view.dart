@@ -40,6 +40,7 @@ class _MainViewState extends State<MainView> {
           const MainIcons(),
           const OrderBottomSheet(),
           const MakeOrderBottomSheet(),
+          const OrderInProgressBottomSheet(),
         ],
       ),
     );
