@@ -64,7 +64,10 @@ class MakeOrderViewModel extends ChangeNotifier {
   }
 
   void clearAddressControllers() {
-    addressControllers.removeRange(2, addressControllers.length);
+    addressControllers = [
+      TextEditingController(),
+      TextEditingController(),
+    ];
     notifyListeners();
   }
 

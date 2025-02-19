@@ -16,21 +16,23 @@ class OrderViewModel extends ChangeNotifier {
     _sheetController.addListener(notifyListeners);
   }
 
-  void toggleBottomSheet() {
-    if (_isBottomSheetVisible) {
-      _sheetController.animateTo(
-        0,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      );
-    } else {
-      _sheetController.animateTo(
-        400,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      );
-    }
-    _isBottomSheetVisible = !_isBottomSheetVisible;
+  void openBottomSheet() {
+    _sheetController.animateTo(
+      400,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+    _isBottomSheetVisible = true;
+  }
+
+  void closeBottomSheet() {
+    _sheetController.animateTo(
+      0,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+    _isBottomSheetVisible = false;
+    notifyListeners();
   }
 
   @override

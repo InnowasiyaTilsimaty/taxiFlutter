@@ -17,7 +17,11 @@ final class Assets {
   static const String x = 'assets/icons/x.svg';
   static const String location = 'assets/icons/location.svg';
   static const String finishFlag = 'assets/icons/finish-flag.svg';
+  static const String arrowLeft = 'assets/icons/arrow-left.svg';
   static const String add = 'assets/icons/add.svg';
   static const String remove = 'assets/icons/remove.svg';
   static const String standartCar = 'assets/icons/standart-car.png';
+  static const String chevronRight = 'assets/icons/chevron-right.svg';
+  static const String comment = 'assets/icons/comment.svg';
+  static const String calendar = 'assets/icons/calendar.svg';
 }

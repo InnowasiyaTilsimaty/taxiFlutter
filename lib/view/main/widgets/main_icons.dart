@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../configs/assets.dart';
-import '../../../view_model/order/order_view_model.dart';
+import '../../../view_model/view_model.dart';
 import 'widgets.dart';
 
 class MainIcons extends StatefulWidget {
@@ -16,10 +16,12 @@ class _MainIconsState extends State<MainIcons> {
   void initState() {
     super.initState();
     context.read<OrderViewModel>().init();
+    context.read<MakeOrderViewModel>().init();
   }
 
   @override
   Widget build(BuildContext context) {
+    final makeOrderViewModel = context.watch<MakeOrderViewModel>();
     final orderViewModel = context.watch<OrderViewModel>();
     return Positioned(
       bottom: 0,
@@ -40,7 +42,10 @@ class _MainIconsState extends State<MainIcons> {
             Padding(
               padding: EdgeInsets.only(
                 right: 20,
-                bottom: orderViewModel.isBottomSheetVisible ? 0 : 111,
+                bottom: orderViewModel.isBottomSheetVisible ||
+                        makeOrderViewModel.isBottomSheetVisible
+                    ? 0
+                    : 111,
               ),
               child: IconButton(
                 onPressed: () {
@@ -63,8 +68,23 @@ class _MainIconsState extends State<MainIcons> {
                       : 0,
                 ),
                 child: IconButton(
-                  onPressed: context.read<OrderViewModel>().toggleBottomSheet,
+                  onPressed: context.read<OrderViewModel>().closeBottomSheet,
                   icon: SvgPicture.asset(Assets.x),
+                ),
+              ),
+            if (makeOrderViewModel.isBottomSheetVisible)
+              AnimatedPadding(
+                duration: const Duration(milliseconds: 100),
+                padding: EdgeInsets.only(
+                  right: 20,
+                  bottom:
+                      makeOrderViewModel.sheetController.position.pixels + 16,
+                ),
+                child: IconButton(
+                  onPressed: () => context
+                      .read<MakeOrderViewModel>()
+                      .closeBottomSheet(context),
+                  icon: SvgPicture.asset(Assets.arrowLeft),
                 ),
               ),
           ],

@@ -18,12 +18,6 @@ class _MapScreenState extends State<MapScreen> {
   }
 
   @override
-  void dispose() {
-    context.read<MapViewModel>().dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final mapViewModel = context.watch<MapViewModel>();
 
