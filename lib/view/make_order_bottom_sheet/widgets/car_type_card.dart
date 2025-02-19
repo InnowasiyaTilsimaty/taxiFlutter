@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../assets.dart';
-import '../theme/app_colors.dart';
+import '../../../configs/assets.dart';
+import '../../../configs/theme/app_colors.dart';
 
 class CarTypeCard extends StatelessWidget {
   const CarTypeCard({super.key});

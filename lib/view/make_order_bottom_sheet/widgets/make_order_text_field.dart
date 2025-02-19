@@ -1,14 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../view_model/view_model.dart';
-import '../assets.dart';
-import '../theme/app_colors.dart';
+import '../../../configs/assets.dart';
+import '../../../configs/extension.dart';
+import '../../../configs/theme/app_colors.dart';
+import '../../../view_model/view_model.dart';
 
 class MakeOrderTextField extends StatelessWidget {
+  const MakeOrderTextField({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final viewModel = context.watch<MakeOrderViewModel>();
+
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
+      height: viewModel.addressControllers.length > 2 ? 140 : 115,
+      child: ListView(
+        physics: const ScrollPhysics(),
+        children: [
+          Column(
+            spacing: 12,
+            children: [
+              ...viewModel.addressControllers.mapIndexed(
+                    (controller, index) => _OrderTextField(
+                  controller: controller,
+                  index: index,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+class _OrderTextField extends StatelessWidget {
   final TextEditingController controller;
   final int index;
-  const MakeOrderTextField({
+  const _OrderTextField({
     super.key,
     required this.controller,
     required this.index,
