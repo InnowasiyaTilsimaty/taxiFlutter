@@ -6,6 +6,11 @@ final class AppTextTheme {
   AppTextTheme._();
 
   static const TextTheme lightTextTheme = TextTheme(
+    displayLarge: TextStyle(
+      fontSize: 42,
+      fontWeight: FontWeight.w600,
+      color: AppColors.primary,
+    ),
     displayMedium: TextStyle(
       fontSize: 32,
       fontWeight: FontWeight.w700,
