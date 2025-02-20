@@ -29,4 +29,5 @@ final class Assets {
   static const String refresh = 'assets/icons/refresh.svg';
   static const String driverRef = 'assets/icons/driver-ref.svg';
   static const String copy = 'assets/icons/copy.svg';
+  static const String callCircular = 'assets/icons/call-circular.svg';
 }

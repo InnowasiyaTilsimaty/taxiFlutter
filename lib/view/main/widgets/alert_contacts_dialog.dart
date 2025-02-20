@@ -1,9 +1,11 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../../configs/assets.dart';
 import '../../../configs/theme/app_colors.dart';
 import '../../../configs/theme/app_theme.dart';
+import '../../../view_model/view_model.dart';
 
 class AlertContactsDialog extends StatelessWidget {
   const AlertContactsDialog({super.key});
@@ -12,6 +14,7 @@ class AlertContactsDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final textThemeEx = context.textThemeEx;
+    final settingsViewModel = context.read<SettingsViewModel>();
 
     return BackdropFilter(
       filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
@@ -52,13 +55,22 @@ class AlertContactsDialog extends StatelessWidget {
         ),
         content: SizedBox(
           width: MediaQuery.of(context).size.width,
-          child: const Column(
+          child: Column(
             spacing: 6,
             mainAxisSize: MainAxisSize.min,
             children: [
-              ContactTile(title: '+993 64 92 93 40'),
-              ContactTile(title: '+993 64 92 93 40'),
-              ContactTile(title: '+993 64 92 93 40'),
+              ContactTile(
+                title: '+993 64 92 93 40',
+                onTap: () => settingsViewModel.makePhoneCall('+99364929340'),
+              ),
+              ContactTile(
+                title: '+993 64 92 93 40',
+                onTap: () => settingsViewModel.makePhoneCall('+99364929340'),
+              ),
+              ContactTile(
+                title: '+993 64 92 93 40',
+                onTap: () => settingsViewModel.makePhoneCall('+99364929340'),
+              ),
             ],
           ),
         ),
@@ -68,9 +80,7 @@ class AlertContactsDialog extends StatelessWidget {
               'Jaň etmek',
               style: textThemeEx.bodyLargeEx,
             ),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
+            onPressed: () => settingsViewModel.makePhoneCall('+99364929340'),
           ),
         ],
       ),
@@ -80,15 +90,19 @@ class AlertContactsDialog extends StatelessWidget {
 
 class ContactTile extends StatelessWidget {
   final String title;
+  final VoidCallback onTap;
+
   const ContactTile({
     super.key,
     required this.title,
+    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return ListTile(
+      onTap: onTap,
       title: Text(
         title,
         style: textTheme.titleMedium,
@@ -114,7 +128,7 @@ class ContactTile extends StatelessWidget {
           Assets.call,
           height: 16,
         ),
-        onPressed: () {},
+        onPressed: onTap,
       ),
     );
   }

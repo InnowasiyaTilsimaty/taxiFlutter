@@ -4,12 +4,14 @@ import 'app_colors.dart';
 
 final class TextStylesEx extends ThemeExtension<TextStylesEx> {
   final TextStyle? bodyLargeEx;
+  final TextStyle? titleMediumEx;
   final TextStyle? titleSmallEx;
   final TextStyle? labelSmallEx;
   final TextStyle? errorTextMedium;
 
   const TextStylesEx({
     this.bodyLargeEx,
+    this.titleMediumEx,
     this.titleSmallEx,
     this.labelSmallEx,
     this.errorTextMedium,
@@ -18,12 +20,14 @@ final class TextStylesEx extends ThemeExtension<TextStylesEx> {
   @override
   TextStylesEx copyWith({
     TextStyle? bodyLargeEx,
+    TextStyle? titleMediumEx,
     TextStyle? titleSmallEx,
     TextStyle? labelSmallEx,
     TextStyle? errorTextMedium,
   }) {
     return TextStylesEx(
       bodyLargeEx: bodyLargeEx ?? this.bodyLargeEx,
+      titleMediumEx: titleMediumEx ?? this.titleMediumEx,
       titleSmallEx: titleSmallEx ?? this.titleSmallEx,
       labelSmallEx: labelSmallEx ?? this.labelSmallEx,
       errorTextMedium: errorTextMedium ?? this.errorTextMedium,
@@ -37,6 +41,7 @@ final class TextStylesEx extends ThemeExtension<TextStylesEx> {
     }
     return TextStylesEx(
       bodyLargeEx: bodyLargeEx,
+      titleMediumEx: titleMediumEx,
       titleSmallEx: titleSmallEx,
       labelSmallEx: labelSmallEx,
       errorTextMedium: errorTextMedium,
@@ -50,6 +55,11 @@ const textStyleLight = TextStylesEx(
     fontSize: 15,
     color: AppColors.white,
     fontWeight: FontWeight.w600,
+  ),
+  titleMediumEx: TextStyle(
+    fontSize: 14,
+    color: AppColors.white,
+    fontWeight: FontWeight.w700,
   ),
   titleSmallEx: TextStyle(
     fontSize: 12,
