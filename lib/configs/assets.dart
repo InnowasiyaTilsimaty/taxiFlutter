@@ -24,4 +24,7 @@ final class Assets {
   static const String chevronRight = 'assets/icons/chevron-right.svg';
   static const String comment = 'assets/icons/comment.svg';
   static const String calendar = 'assets/icons/calendar.svg';
+  static const String document = 'assets/icons/document.svg';
+  static const String notification = 'assets/icons/notification.svg';
+  static const String refresh = 'assets/icons/refresh.svg';
 }

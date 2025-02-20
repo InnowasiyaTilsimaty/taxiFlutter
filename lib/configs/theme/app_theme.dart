@@ -12,10 +12,15 @@ class AppTheme {
         useMaterial3: true,
         fontFamily: 'Onest',
         extensions: const [textStyleLight],
+        scaffoldBackgroundColor: AppColors.white,
         appBarTheme: const AppBarTheme(
           backgroundColor: AppColors.white,
           elevation: 0,
           titleSpacing: 20,
+        ),
+        dividerTheme: DividerThemeData(
+          color: Colors.black.withValues(alpha: 0.2),
+          thickness: 0.5,
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(

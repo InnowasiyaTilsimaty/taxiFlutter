@@ -48,6 +48,11 @@ final class AppTextTheme {
       fontWeight: FontWeight.w500,
       color: AppColors.primary,
     ),
+    titleLarge: TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w600,
+      color: AppColors.black,
+    ),
     titleMedium: TextStyle(
       fontSize: 14,
       fontWeight: FontWeight.w700,
