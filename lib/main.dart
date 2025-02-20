@@ -7,6 +7,7 @@ import 'configs/theme/app_theme.dart';
 import 'view_model/view_model.dart';
 
 GetIt getIt = GetIt.instance;
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   getIt.registerLazySingleton<OrderViewModel>(OrderViewModel.new);
@@ -25,6 +26,8 @@ class TaksistApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => MapViewModel()),
         ChangeNotifierProvider(create: (context) => MakeOrderViewModel()),
         ChangeNotifierProvider(create: (context) => OrderInProgressViewModel()),
+        ChangeNotifierProvider(create: (context) => OrderInProgressViewModel()),
+        ChangeNotifierProvider(create: (context) => SettingsViewModel()),
       ],
       child: MaterialApp(
         title: 'Taksist',
