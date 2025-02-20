@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../configs/assets.dart';
+import '../../../configs/routes/routes.dart';
 import '../../../configs/theme/app_colors.dart';
 
 class SettingsTile extends StatelessWidget {
@@ -18,7 +19,13 @@ class SettingsTile extends StatelessWidget {
       child: Column(
         children: [
           ListTile(
-            onTap: (){},
+            onTap: () => Navigator.pushNamed(
+              context,
+              RouteNames.orders,
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
             leading: SvgPicture.asset(Assets.refresh),
             title: Text(
               'Sargytlar',
@@ -28,7 +35,10 @@ class SettingsTile extends StatelessWidget {
           ),
           const Divider(),
           ListTile(
-            onTap: (){},
+            onTap: () {},
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
             leading: SvgPicture.asset(Assets.notification),
             title: Text(
               'Bildirişler ',
@@ -38,7 +48,10 @@ class SettingsTile extends StatelessWidget {
           ),
           const Divider(),
           ListTile(
-            onTap: (){},
+            onTap: () {},
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
             leading: SvgPicture.asset(Assets.document),
             title: Text(
               'Ulanyş düzgünleri',

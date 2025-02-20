@@ -10,6 +10,7 @@ abstract final class RouteNames {
   static const main = '/main';
   static const signUp = '/sign_up';
   static const settings = '/settings';
+  static const orders = '/orders';
 }
 
 abstract final class Navigation {
@@ -21,5 +22,6 @@ abstract final class Navigation {
     RouteNames.main: (_) => const MainView(),
     RouteNames.signUp: (_) => const SignUpView(),
     RouteNames.settings: (_) => const SettingsView(),
+    RouteNames.orders: (_) => const OrdersView(),
   };
 }

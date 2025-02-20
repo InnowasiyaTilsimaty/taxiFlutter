@@ -36,4 +36,5 @@ final class Assets {
   static const String telegram = 'assets/icons/telegram.svg';
   static const String tikTok = 'assets/icons/tik-tok.svg';
   static const String whatsApp = 'assets/icons/whats-app.svg';
+  static const String arrowRepeat = 'assets/icons/arrow-repeat.svg';
 }

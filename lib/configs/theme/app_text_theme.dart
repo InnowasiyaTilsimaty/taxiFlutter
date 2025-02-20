@@ -63,5 +63,10 @@ final class AppTextTheme {
       fontWeight: FontWeight.w600,
       color: AppColors.black,
     ),
+    headlineSmall: TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w500,
+      color: AppColors.darkBlue,
+    ),
   );
 }
