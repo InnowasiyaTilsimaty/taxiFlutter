@@ -27,4 +27,6 @@ final class Assets {
   static const String document = 'assets/icons/document.svg';
   static const String notification = 'assets/icons/notification.svg';
   static const String refresh = 'assets/icons/refresh.svg';
+  static const String driverRef = 'assets/icons/driver-ref.svg';
+  static const String copy = 'assets/icons/copy.svg';
 }
