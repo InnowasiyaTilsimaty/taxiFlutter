@@ -30,4 +30,10 @@ final class Assets {
   static const String driverRef = 'assets/icons/driver-ref.svg';
   static const String copy = 'assets/icons/copy.svg';
   static const String callCircular = 'assets/icons/call-circular.svg';
+  static const String browser = 'assets/icons/browser.svg';
+  static const String imo = 'assets/icons/imo.svg';
+  static const String instagram = 'assets/icons/instagram.svg';
+  static const String telegram = 'assets/icons/telegram.svg';
+  static const String tikTok = 'assets/icons/tik-tok.svg';
+  static const String whatsApp = 'assets/icons/whats-app.svg';
 }
