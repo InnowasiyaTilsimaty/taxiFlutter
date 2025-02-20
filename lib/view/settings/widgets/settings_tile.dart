@@ -48,7 +48,10 @@ class SettingsTile extends StatelessWidget {
           ),
           const Divider(),
           ListTile(
-            onTap: () {},
+            onTap: () => Navigator.pushNamed(
+              context,
+              RouteNames.userRules,
+            ),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             ),

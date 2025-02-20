@@ -11,6 +11,7 @@ abstract final class RouteNames {
   static const signUp = '/sign_up';
   static const settings = '/settings';
   static const orders = '/orders';
+  static const userRules = '/user_rules';
 }
 
 abstract final class Navigation {
@@ -23,5 +24,6 @@ abstract final class Navigation {
     RouteNames.signUp: (_) => const SignUpView(),
     RouteNames.settings: (_) => const SettingsView(),
     RouteNames.orders: (_) => const OrdersView(),
+    RouteNames.userRules: (_) => const UserRulesView(),
   };
 }
