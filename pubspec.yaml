@@ -17,6 +17,7 @@ dependencies:
   provider: ^6.1.2
 
   qr_flutter: ^4.1.0
+  qr_code_scanner_plus: ^2.0.10+1
   share_plus: ^10.1.4
   url_launcher: ^6.3.1
   
