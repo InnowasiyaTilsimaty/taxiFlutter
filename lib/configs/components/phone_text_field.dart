@@ -3,13 +3,16 @@ import 'package:flutter/services.dart';
 
 import '../assets.dart';
 import '../theme/app_colors.dart';
+import '../theme/app_theme.dart';
 
 class PhoneTextField extends StatefulWidget {
   final TextEditingController? controller;
+  final String? validator;
 
   const PhoneTextField({
     super.key,
     this.controller,
+    this.validator,
   });
 
   @override
@@ -37,15 +40,18 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
   @override
   Widget build(BuildContext context) {
     final themeTheme = Theme.of(context).textTheme;
+    final themeThemeEx = context.textThemeEx;
     const fieldBorder = OutlineInputBorder(
       borderRadius: BorderRadius.horizontal(
         right: Radius.circular(8),
       ),
       borderSide: BorderSide.none,
     );
-    final borderColor =
-        _focusNode.hasFocus ? AppColors.primary : AppColors.gray;
-
+    final borderColor = widget.validator != null
+        ? AppColors.red
+        : _focusNode.hasFocus
+            ? AppColors.primary
+            : AppColors.gray;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -117,6 +123,14 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
             ),
           ],
         ),
+        if (widget.validator != null)
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+            child: Text(
+              widget.validator!,
+              style: themeThemeEx.errorTextSmall,
+            ),
+          ),
       ],
     );
   }

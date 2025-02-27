@@ -11,6 +11,7 @@ class MapViewModel extends ChangeNotifier {
   StreamSubscription<LocationData>? locationSub;
 
   bool get locationLoading => locationData?.longitude == null && locationData?.latitude == null;
+
   Future<void> locationService() async {
     bool _serviceEnabled = await location.serviceEnabled();
     if (!_serviceEnabled) {
@@ -30,7 +31,7 @@ class MapViewModel extends ChangeNotifier {
       }
     }
   }
-  
+
   void getLocation(LocationData data) {
     if (locationData?.longitude == null && locationData?.latitude == null) {
       notifyListeners();
@@ -43,6 +44,14 @@ class MapViewModel extends ChangeNotifier {
     locationService();
 
     locationSub = location.onLocationChanged.listen(getLocation);
+  }
+
+  void currentPosition() {
+    mapController?.moveCamera(
+      CameraUpdate.newLatLng(
+        LatLng(locationData!.latitude!, locationData!.longitude!),
+      ),
+    );
   }
 
   @override

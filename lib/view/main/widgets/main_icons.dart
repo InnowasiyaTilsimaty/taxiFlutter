@@ -25,6 +25,7 @@ class _MainIconsState extends State<MainIcons> {
     final makeOrderViewModel = context.watch<MakeOrderViewModel>();
     final orderViewModel = context.watch<OrderViewModel>();
     final orderInProgressViewModel = context.watch<OrderInProgressViewModel>();
+    final mapViewModel = context.watch<MapViewModel>();
 
     return Positioned(
       bottom: 0,
@@ -38,7 +39,7 @@ class _MainIconsState extends State<MainIcons> {
             Padding(
               padding: const EdgeInsets.only(right: 20),
               child: IconButton(
-                onPressed: () {},
+                onPressed: mapViewModel.currentPosition,
                 icon: SvgPicture.asset(Assets.myLocation),
               ),
             ),

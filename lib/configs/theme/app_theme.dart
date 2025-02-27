@@ -47,6 +47,12 @@ class AppTheme {
             fontWeight: FontWeight.w400,
             color: AppColors.grayLight,
           ),
+          errorStyle: const TextStyle(
+            fontSize: 12,
+            color: AppColors.red,
+            fontWeight: FontWeight.w400,
+            decoration: TextDecoration.none,
+          ),
           contentPadding: const EdgeInsets.symmetric(
             horizontal: 16,
             vertical: 10.5,
@@ -63,6 +69,17 @@ class AppTheme {
             borderRadius: BorderRadius.circular(10),
             borderSide: const BorderSide(color: AppColors.primary),
           ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: AppColors.red),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: AppColors.red),
+          ),
+        ),
+        progressIndicatorTheme: const ProgressIndicatorThemeData(
+          color: AppColors.white,
         ),
         iconButtonTheme: IconButtonThemeData(
           style: IconButton.styleFrom(
