@@ -11,7 +11,7 @@ import '../../data/exceptions.dart';
 import '../../main.dart';
 import '../../model/user/user_model.dart';
 import '../../repository/repository.dart';
-import '../../service/auth_service/auth_service.dart';
+import '../../service/auth/auth_service.dart';
 
 class SignupViewModel extends ChangeNotifier {
   final UserRepository userRepository;

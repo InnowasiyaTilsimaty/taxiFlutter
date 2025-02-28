@@ -1,16 +1,16 @@
 import '../../configs/app_url.dart';
-import '../../data/json_http_client.dart';
 import '../../model/model.dart';
+import '../../service/service.dart';
 import 'user_repository.dart';
 
 class UserApiRepository extends UserRepository {
-  final JsonHttpClient httpClient;
+  final HttpClientService httpClientService;
 
-  UserApiRepository({required this.httpClient});
+  UserApiRepository({required this.httpClientService});
 
   @override
   Future<Response> signup(SignUpModel users) async {
-    return httpClient.post(
+    return httpClientService.httpClient.post(
       AppUrl.register,
       body: users.toJson(),
       mapper: (data) => Response.fromJson(data as Map<String, dynamic>),
@@ -19,7 +19,7 @@ class UserApiRepository extends UserRepository {
 
   @override
   Future<Response> login(LoginModel users) async {
-    return httpClient.post(
+    return httpClientService.httpClient.post(
       AppUrl.login,
       body: users.toJson(),
       mapper: (data) => Response.fromJson(data as Map<String, dynamic>),

@@ -4,9 +4,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'configs/routes/routes.dart';
 import 'configs/snack_bar.dart';
 import 'configs/theme/app_theme.dart';
-import 'data/json_http_client.dart';
 import 'repository/repository.dart';
-import 'service/auth_service/auth_service.dart';
+import 'service/auth/auth_service.dart';
 import 'service/service.dart';
 import 'view_model/view_model.dart';
 
@@ -24,7 +23,7 @@ void main() {
   getIt.registerLazySingleton<OrderViewModel>(OrderViewModel.new);
 
   getIt.registerLazySingleton<UserRepository>(
-    () => UserApiRepository(httpClient: JsonHttpClient()),
+    () => UserApiRepository(httpClientService: HttpClientService()),
   );
 
   getIt.registerLazySingleton<AuthService>(
