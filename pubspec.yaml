@@ -24,6 +24,8 @@ dependencies:
   location: ^8.0.0
   maplibre_gl: ^0.20.0
 
+  shared_preferences: ^2.5.2
+
   cupertino_icons: ^1.0.8
 
   dio: ^5.8.0+1
