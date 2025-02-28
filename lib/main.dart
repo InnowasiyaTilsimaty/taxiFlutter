@@ -48,6 +48,9 @@ class TaksistApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => SignupViewModel(userRepository: getIt<UserRepository>()),
         ),
+        ChangeNotifierProvider(
+          create: (context) => LoginViewModel(userRepository: getIt<UserRepository>()),
+        ),
       ],
       child: MaterialApp(
         title: 'Taksist',
