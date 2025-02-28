@@ -9,6 +9,7 @@ abstract final class RouteNames {
   static const welcome = '/welcome';
   static const main = '/main';
   static const signUp = '/sign_up';
+  static const login = '/login';
   static const qrScan = '/qr_scan';
   static const settings = '/settings';
   static const orders = '/orders';
@@ -23,6 +24,7 @@ abstract final class Navigation {
     RouteNames.welcome: (_) => const WelcomeView(),
     RouteNames.main: (_) => const MainView(),
     RouteNames.signUp: (_) => const SignUpView(),
+    RouteNames.login: (_) => const LoginView(),
     RouteNames.qrScan: (_) => const QRScannerScreen(),
     RouteNames.settings: (_) => const SettingsView(),
     RouteNames.orders: (_) => const OrdersView(),

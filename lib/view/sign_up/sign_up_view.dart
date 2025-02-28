@@ -6,8 +6,26 @@ import '../../configs/routes/routes.dart';
 import '../../configs/validators.dart';
 import '../../view_model/view_model.dart';
 
-class SignUpView extends StatelessWidget {
+class SignUpView extends StatefulWidget {
   const SignUpView({super.key});
+
+  @override
+  State<SignUpView> createState() => _SignUpViewState();
+}
+
+class _SignUpViewState extends State<SignUpView> {
+
+  @override
+  void initState() {
+    context.read<SignupViewModel>().phoneError = null;
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    context.read<SignupViewModel>().dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +93,10 @@ class SignUpView extends StatelessWidget {
               ),
               const Expanded(child: SizedBox(height: 10)),
               TextButton(
-                onPressed: () {},
+                onPressed: () => Navigator.pushNamed(
+                  context,
+                  RouteNames.login,
+                ),
                 child: Text(
                   'Siziň hasabyňyz barmy onda giriň',
                   style: themeTheme.bodySmall,

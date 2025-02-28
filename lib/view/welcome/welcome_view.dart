@@ -44,7 +44,10 @@ class WelcomeView extends StatelessWidget {
             ),
             const SizedBox(height: 33),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () => Navigator.pushNamed(
+                context,
+                RouteNames.login,
+              ),
               child: Text(
                 'Içeri gir',
                 style: themeTheme.bodyMedium,
