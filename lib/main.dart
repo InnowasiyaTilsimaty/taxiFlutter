@@ -19,6 +19,8 @@ void main() {
     () async => AppPrefsService(await SharedPreferences.getInstance()),
   );
 
+  getIt.registerLazySingleton<SplashService>(SplashService.new);
+
   getIt.registerLazySingleton<OrderViewModel>(OrderViewModel.new);
 
   getIt.registerLazySingleton<UserRepository>(

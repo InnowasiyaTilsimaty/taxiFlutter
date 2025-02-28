@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../configs/assets.dart';
 import '../../configs/components/indicators.dart';
-import '../../configs/routes/routes.dart';
+import '../../main.dart';
+import '../../service/service.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -11,15 +12,11 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends State<SplashView> {
+
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(
-        context,
-        RouteNames.welcome,
-      );
-    });
+    getIt<SplashService>().checkState(context);
   }
 
   @override
