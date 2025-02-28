@@ -9,11 +9,20 @@ class UserApiRepository extends UserRepository {
   UserApiRepository({required this.httpClient});
 
   @override
-  Future<void> signup(SignUpModel users) async {
+  Future<Response> signup(SignUpModel users) async {
     return httpClient.post(
       AppUrl.register,
       body: users.toJson(),
-      mapper: (data) {},
+      mapper: (data) => Response.fromJson(data as Map<String, dynamic>),
+    );
+  }
+
+  @override
+  Future<Response> login(LoginModel users) async {
+    return httpClient.post(
+      AppUrl.login,
+      body: users.toJson(),
+      mapper: (data) => Response.fromJson(data as Map<String, dynamic>),
     );
   }
 }

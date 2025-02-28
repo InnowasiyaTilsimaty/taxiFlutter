@@ -28,4 +28,19 @@ class LoginModel {
     required this.username,
     required this.phone,
   });
+
+  Map<String, dynamic> toJson() => _$LoginModelToJson(this);
+
+  factory LoginModel.fromJson(Map<String, dynamic> json) => _$LoginModelFromJson(json);
+}
+
+@JsonSerializable()
+class Response {
+  final String token;
+
+  Response({required this.token});
+
+  Map<String, dynamic> toJson() => _$ResponseToJson(this);
+
+  factory Response.fromJson(Map<String, dynamic> json) => _$ResponseFromJson(json);
 }
