@@ -18,6 +18,7 @@ class _MainIconsState extends State<MainIcons> {
     context.read<OrderViewModel>().init();
     context.read<MakeOrderViewModel>().init();
     context.read<OrderInProgressViewModel>().init();
+    context.read<ChooseLocationOnMapViewModel>().init();
   }
 
   @override
@@ -26,6 +27,7 @@ class _MainIconsState extends State<MainIcons> {
     final orderViewModel = context.watch<OrderViewModel>();
     final orderInProgressViewModel = context.watch<OrderInProgressViewModel>();
     final mapViewModel = context.watch<MapViewModel>();
+    final chooseLocationOnMapViewModel = context.watch<ChooseLocationOnMapViewModel>();
 
     return Positioned(
       bottom: 0,
@@ -39,19 +41,20 @@ class _MainIconsState extends State<MainIcons> {
             Padding(
               padding: const EdgeInsets.only(right: 20),
               child: IconButton(
-                onPressed: mapViewModel.currentPosition,
+                onPressed: mapViewModel.moveToCurrentPosition,
                 icon: SvgPicture.asset(Assets.myLocation),
               ),
             ),
             Padding(
               padding: EdgeInsets.only(
                 right: 20,
-                bottom:
-                    orderViewModel.isBottomSheetVisible || makeOrderViewModel.isBottomSheetVisible
-                        ? 0
-                        : orderInProgressViewModel.isBottomSheetVisible
-                            ? orderInProgressViewModel.sheetController.position.pixels + 16
-                            : 111,
+                bottom: orderViewModel.isBottomSheetVisible ||
+                        makeOrderViewModel.isBottomSheetVisible ||
+                        chooseLocationOnMapViewModel.isBottomSheetVisible
+                    ? 0
+                    : orderInProgressViewModel.isBottomSheetVisible
+                        ? orderInProgressViewModel.sheetController.position.pixels + 16
+                        : 111,
               ),
               child: IconButton(
                 onPressed: () {
@@ -74,7 +77,7 @@ class _MainIconsState extends State<MainIcons> {
                       : 0,
                 ),
                 child: IconButton(
-                  onPressed: context.read<OrderViewModel>().closeBottomSheet,
+                  onPressed: () => context.read<OrderViewModel>().cancelOrder(context),
                   icon: SvgPicture.asset(Assets.x),
                 ),
               ),
@@ -87,6 +90,19 @@ class _MainIconsState extends State<MainIcons> {
                 ),
                 child: IconButton(
                   onPressed: () => context.read<MakeOrderViewModel>().closeBottomSheet(context),
+                  icon: SvgPicture.asset(Assets.arrowLeft),
+                ),
+              ),
+            if (chooseLocationOnMapViewModel.isBottomSheetVisible)
+              AnimatedPadding(
+                duration: const Duration(milliseconds: 100),
+                padding: EdgeInsets.only(
+                  right: 20,
+                  bottom: chooseLocationOnMapViewModel.sheetController.position.pixels + 16,
+                ),
+                child: IconButton(
+                  onPressed: () =>
+                      context.read<ChooseLocationOnMapViewModel>().closeBottomSheet(context),
                   icon: SvgPicture.asset(Assets.arrowLeft),
                 ),
               ),

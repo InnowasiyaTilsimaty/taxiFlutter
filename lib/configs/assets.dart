@@ -37,4 +37,6 @@ final class Assets {
   static const String tikTok = 'assets/icons/tik-tok.svg';
   static const String whatsApp = 'assets/icons/whats-app.svg';
   static const String arrowRepeat = 'assets/icons/arrow-repeat.svg';
+  static const String marker = 'assets/icons/marker.png';
+  static const String currentPosition = 'assets/icons/current-position.png';
 }

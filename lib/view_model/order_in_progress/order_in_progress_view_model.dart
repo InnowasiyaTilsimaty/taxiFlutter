@@ -26,7 +26,7 @@ class OrderInProgressViewModel extends ChangeNotifier {
   }
 
   void openBottomSheet(BuildContext context) {
-    context.read<OrderViewModel>().closeBottomSheet();
+    context.read<OrderViewModel>().closeBottomSheet(context);
     _sheetController.animateTo(
       400,
       duration: const Duration(milliseconds: 300),
@@ -37,6 +37,8 @@ class OrderInProgressViewModel extends ChangeNotifier {
   }
 
   void closeBottomSheet(BuildContext context) {
+    context.read<MapViewModel>().deleteAllMarkers();
+
     _sheetController.animateTo(
       0,
       duration: const Duration(milliseconds: 300),

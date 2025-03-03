@@ -48,6 +48,8 @@ class _OrderTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<MakeOrderViewModel>();
+    final chooseLocationOnMapViewModel = context.read<ChooseLocationOnMapViewModel>();
+
     return Row(
       children: [
         IconButton(
@@ -81,7 +83,7 @@ class _OrderTextField extends StatelessWidget {
         ),
         const SizedBox(width: 10),
         IconButton(
-          onPressed: () {},
+          onPressed: () => chooseLocationOnMapViewModel.openBottomSheet(context, index + 1),
           style: ElevatedButton.styleFrom(
             minimumSize: const Size(48, 48),
             shape: RoundedRectangleBorder(
