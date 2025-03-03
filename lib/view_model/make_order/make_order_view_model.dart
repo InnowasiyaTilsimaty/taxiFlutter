@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:sheet/sheet.dart';
 
+import '../../service/service.dart';
 import '../view_model.dart';
 
 class MakeOrderViewModel extends ChangeNotifier {
+  final locService = LocationService();
   final SheetController _sheetController = SheetController();
 
   List<TextEditingController> addressControllers = [
@@ -38,7 +39,7 @@ class MakeOrderViewModel extends ChangeNotifier {
   }
 
   void openBottomSheet(BuildContext context) {
-    context.read<OrderViewModel>().closeBottomSheet();
+    context.read<OrderViewModel>().closeBottomSheet(context);
     _sheetController.animateTo(
       500,
       duration: const Duration(milliseconds: 300),
@@ -63,7 +64,7 @@ class MakeOrderViewModel extends ChangeNotifier {
           .then((_) {
         clearAddressControllers();
         if (openOrderBottomSheet) {
-          context.read<OrderViewModel>().openBottomSheet();
+          context.read<OrderViewModel>().openBottomSheet(context);
         }
         _isBottomSheetVisible = false;
       });
@@ -76,6 +77,17 @@ class MakeOrderViewModel extends ChangeNotifier {
       TextEditingController(),
     ];
     notifyListeners();
+  }
+
+  Future<void> getAddressFromCoordinates(BuildContext context) async {
+    final locationData = context.read<MapViewModel>().locationData;
+    final place = await locService.getAddressFromCoordinates(
+      locationData?.latitude ?? 0,
+      locationData?.longitude ?? 0,
+    );
+    if (place.isNotEmpty) {
+      addressControllers[0].text = place;
+    }
   }
 
   @override

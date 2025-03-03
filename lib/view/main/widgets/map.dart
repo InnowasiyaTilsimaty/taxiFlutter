@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:maplibre_gl/maplibre_gl.dart';
-import 'package:provider/provider.dart';
+import '../../../configs/assets.dart';
 import '../../../view_model/view_model.dart';
 
 class MapScreen extends StatefulWidget {
@@ -20,48 +20,53 @@ class _MapScreenState extends State<MapScreen> {
   @override
   Widget build(BuildContext context) {
     final mapViewModel = context.watch<MapViewModel>();
+    final chooseLocationOnMapViewModel = context.watch<ChooseLocationOnMapViewModel>();
 
     return mapViewModel.locationLoading
         ? const Center(child: CircularProgressIndicator())
-        : MapLibreMap(
-            styleString: 'http://belgi.com.tm:8060/styles/bright/style.json',
-            initialCameraPosition: CameraPosition(
-              target: LatLng(
-                mapViewModel.locationData?.latitude ?? 0,
-                mapViewModel.locationData?.longitude ?? 0,
+        : Stack(
+            children: [
+              MapLibreMap(
+                styleString: 'http://belgi.com.tm:8060/styles/bright/style.json',
+                initialCameraPosition: CameraPosition(
+                  target: LatLng(
+                    mapViewModel.locationData?.latitude ?? 0,
+                    mapViewModel.locationData?.longitude ?? 0,
+                  ),
+                  zoom: 15,
+                ),
+                onMapCreated: (controller) async => mapViewModel.onMapCreated(controller),
+                onCameraIdle: () async {
+                  final bounds = await mapViewModel.mapController?.getVisibleRegion();
+                  if (bounds != null) {
+                    await chooseLocationOnMapViewModel.getCameraPositionAddress(bounds);
+                  }
+                },
+                annotationOrder: const <AnnotationType>[
+                  AnnotationType.circle,
+                  AnnotationType.symbol,
+                ],
+                compassEnabled: false,
               ),
-              zoom: 15,
-            ),
-            onMapCreated: (controller) =>
-                mapViewModel.mapController = controller,
-            onStyleLoadedCallback: () async {
-              await mapViewModel.mapController?.addCircle(
-                CircleOptions(
-                  geometry: LatLng(
-                    mapViewModel.locationData?.latitude ?? 0,
-                    mapViewModel.locationData?.longitude ?? 0,
+              if (chooseLocationOnMapViewModel.isBottomSheetVisible)
+                Center(
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Image.asset(
+                        Assets.marker,
+                        height: 42,
+                      ),
+                      Positioned(
+                        top: 4,
+                        child: Text(
+                          chooseLocationOnMapViewModel.markerId.toString(),
+                        ),
+                      ),
+                    ],
                   ),
-                  circleRadius: 83.5,
-                  circleColor: '#DCDFFF',
-                  circleOpacity: 0.5,
                 ),
-              );
-              await mapViewModel.mapController?.addSymbol(
-                SymbolOptions(
-                  geometry: LatLng(
-                    mapViewModel.locationData?.latitude ?? 0,
-                    mapViewModel.locationData?.longitude ?? 0,
-                  ),
-                  iconImage: 'assets/icons/current-position.png',
-                  iconSize: 1,
-                ),
-              );
-            },
-            annotationOrder: const <AnnotationType>[
-              AnnotationType.circle,
-              AnnotationType.symbol,
             ],
-            compassEnabled: false,
           );
   }
 }

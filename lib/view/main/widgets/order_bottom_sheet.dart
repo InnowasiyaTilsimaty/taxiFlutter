@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:sheet/sheet.dart';
 
 import '../../../configs/assets.dart';
@@ -12,6 +11,9 @@ class OrderBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final makeOrderViewModel = context.watch<MakeOrderViewModel>();
+    final chooseLocationOnMapViewModel = context.read<ChooseLocationOnMapViewModel>();
+
     return Sheet(
       backgroundColor: Colors.transparent,
       physics: const NeverDraggableSheetPhysics(),
@@ -46,6 +48,7 @@ class OrderBottomSheet extends StatelessWidget {
                 children: [
                   Expanded(
                     child: TextFormField(
+                      controller: makeOrderViewModel.addressControllers[0],
                       decoration: InputDecoration(
                         hintText: 'Salgyňyz...',
                         prefixIcon: Padding(
@@ -60,7 +63,7 @@ class OrderBottomSheet extends StatelessWidget {
                     ),
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () => chooseLocationOnMapViewModel.openBottomSheet(context, 1),
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size(48, 48),
                       shape: RoundedRectangleBorder(
@@ -77,6 +80,9 @@ class OrderBottomSheet extends StatelessWidget {
                 children: [
                   Expanded(
                     child: TextFormField(
+                      controller: makeOrderViewModel.addressControllers.length > 1
+                          ? makeOrderViewModel.addressControllers[1]
+                          : null,
                       decoration: InputDecoration(
                         hintText: 'Nirä gitmeli',
                         prefixIcon: Padding(
@@ -91,7 +97,7 @@ class OrderBottomSheet extends StatelessWidget {
                     ),
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () => chooseLocationOnMapViewModel.openBottomSheet(context, 2),
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size(48, 48),
                       shape: RoundedRectangleBorder(
@@ -101,11 +107,10 @@ class OrderBottomSheet extends StatelessWidget {
                     icon: SvgPicture.asset(Assets.maps),
                   ),
                 ],
-              ),
+               ),
               const SizedBox(height: 18),
               ElevatedButton(
-                onPressed: () =>
-                    context.read<MakeOrderViewModel>().openBottomSheet(context),
+                onPressed: () => context.read<MakeOrderViewModel>().openBottomSheet(context),
                 child: Text(
                   'Dowam etmek',
                   style: textTheme.bodyMedium,
