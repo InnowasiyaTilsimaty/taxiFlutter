@@ -17,6 +17,7 @@ class MapViewModel extends ChangeNotifier {
   LocationData? locationData;
 
   bool get locationLoading => locationData?.longitude == null && locationData?.latitude == null;
+  Map<String, Symbol> get symbolExists => _symbolExists;
 
   void init() {
     _locationService.requestPermission();

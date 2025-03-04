@@ -1,9 +1,11 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../../configs/assets.dart';
 import '../../../configs/theme/app_colors.dart';
 import '../../../configs/theme/app_theme.dart';
+import '../../../view_model/make_order/make_order_view_model.dart';
 
 class AlertCommentDialog extends StatelessWidget {
   const AlertCommentDialog({super.key});
@@ -43,9 +45,7 @@ class AlertCommentDialog extends StatelessWidget {
                   borderRadius: BorderRadius.circular(5),
                 ),
               ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
+              onPressed: () => context.read<MakeOrderViewModel>().closeCommentAlert(context),
               icon: SvgPicture.asset(Assets.x),
             ),
           ],
@@ -58,6 +58,7 @@ class AlertCommentDialog extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               TextFormField(
+                controller: context.watch<MakeOrderViewModel>().commentController,
                 decoration: InputDecoration(
                   hintText: 'Bellik...',
                   border: OutlineInputBorder(

@@ -11,6 +11,7 @@ class MakeOrderBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final makeOrderViewModel = context.watch<MakeOrderViewModel>();
 
     return Sheet(
       backgroundColor: Colors.transparent,
@@ -47,12 +48,13 @@ class MakeOrderBottomSheet extends StatelessWidget {
               const MakeOrderTile(),
               const SizedBox(height: 12),
               ElevatedButton(
-                onPressed: () =>
-                    context.read<MakeOrderViewModel>().continueOrder(context),
-                child: Text(
-                  'Dowam etmek',
-                  style: textTheme.bodyMedium,
-                ),
+                onPressed: () => context.read<MakeOrderViewModel>().createOrder(context),
+                child: makeOrderViewModel.inProgress
+                    ? const CircularProgressIndicator()
+                    : Text(
+                        'Dowam etmek',
+                        style: textTheme.bodyMedium,
+                      ),
               ),
             ],
           ),

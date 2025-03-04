@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../../../configs/assets.dart';
 import '../../../configs/extension.dart';
@@ -54,8 +53,10 @@ class _OrderTextField extends StatelessWidget {
     return Row(
       children: [
         IconButton(
-          onPressed: () =>
-              context.read<MakeOrderViewModel>().removeAddressController(context, index),
+          onPressed: () => context.read<MakeOrderViewModel>().removeAddressController(
+                context,
+                index,
+              ),
           style: ElevatedButton.styleFrom(
             minimumSize: const Size(24, 24),
             foregroundColor: AppColors.black,
@@ -97,7 +98,7 @@ class _OrderTextField extends StatelessWidget {
           icon: SvgPicture.asset(Assets.maps),
         ),
         const SizedBox(width: 10),
-        if (index == viewModel.addressControllers.length - 1) ...[
+        if (1 == viewModel.addressControllers.length) ...[
           IconButton(
             onPressed: context.read<MakeOrderViewModel>().addAddressController,
             style: ElevatedButton.styleFrom(
