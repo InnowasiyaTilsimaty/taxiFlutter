@@ -26,6 +26,10 @@ void main() {
     () => UserApiRepository(httpClientService: HttpClientService()),
   );
 
+  getIt.registerLazySingleton<OrderRepository>(
+    () => OrderApiRepository(httpClientService: HttpClientService()),
+  );
+
   getIt.registerLazySingleton<AuthService>(
     () => AuthService(prefsService: getIt()),
   );
@@ -42,16 +46,24 @@ class TaksistApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => getIt<OrderViewModel>()),
         ChangeNotifierProvider(create: (context) => MapViewModel()),
-        ChangeNotifierProvider(create: (context) => MakeOrderViewModel()),
+        ChangeNotifierProvider(
+          create: (context) => MakeOrderViewModel(
+            orderRepository: getIt<OrderRepository>(),
+          ),
+        ),
         ChangeNotifierProvider(create: (context) => OrderInProgressViewModel()),
         ChangeNotifierProvider(create: (context) => OrderInProgressViewModel()),
         ChangeNotifierProvider(create: (context) => SettingsViewModel()),
         ChangeNotifierProvider(create: (context) => ChooseLocationOnMapViewModel()),
         ChangeNotifierProvider(
-          create: (context) => SignupViewModel(userRepository: getIt<UserRepository>()),
+          create: (context) => SignupViewModel(
+            userRepository: getIt<UserRepository>(),
+          ),
         ),
         ChangeNotifierProvider(
-          create: (context) => LoginViewModel(userRepository: getIt<UserRepository>()),
+          create: (context) => LoginViewModel(
+            userRepository: getIt<UserRepository>(),
+          ),
         ),
       ],
       child: MaterialApp(
