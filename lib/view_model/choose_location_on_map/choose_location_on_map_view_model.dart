@@ -20,14 +20,23 @@ class ChooseLocationOnMapViewModel extends ChangeNotifier {
 
   bool get isBottomSheetVisible => _isBottomSheetVisible;
 
+  bool _atMakeOrderToChooseLoc = false;
+
+  bool get atMakeOrderToChooseLoc => _atMakeOrderToChooseLoc;
+
   void init() {
     _sheetController.addListener(notifyListeners);
   }
 
-  void openBottomSheet(BuildContext context, int markerId) {
+  void openBottomSheet(
+    BuildContext context,
+    int markerId, {
+    bool atMakeOrder = false,
+  }) {
+    _atMakeOrderToChooseLoc = atMakeOrder;
     this.markerId = markerId;
     context.read<OrderViewModel>().closeBottomSheet(context);
-    context.read<MakeOrderViewModel>().closeBottomSheet(context);
+    context.read<MakeOrderViewModel>().closeBottomSheet(context, openOrderBottomSheet: false);
     context.read<MapViewModel>().deleteMarker(markerId);
 
     _sheetController.animateTo(
@@ -55,11 +64,15 @@ class ChooseLocationOnMapViewModel extends ChangeNotifier {
     bool isCoordinatesSelected = false,
   }) {
     final currentLatLng = context.read<MapViewModel>().locationData;
-    context.read<OrderViewModel>().openBottomSheet(
-          context,
-          isCoordinatesSelected: isCoordinatesSelected,
-        );
-    if (!isCoordinatesSelected) {
+    if (_atMakeOrderToChooseLoc) {
+      context.read<MakeOrderViewModel>().openBottomSheet(context);
+    } else {
+      context.read<OrderViewModel>().openBottomSheet(
+            context,
+            isCoordinatesSelected: isCoordinatesSelected,
+          );
+    }
+    if (isCoordinatesSelected) {
       context.read<MapViewModel>().createMarker(
             markerId,
             LatLng(
@@ -76,10 +89,14 @@ class ChooseLocationOnMapViewModel extends ChangeNotifier {
     _isBottomSheetVisible = false;
   }
 
-  void chooseButton(BuildContext context) {
+  Future<void> chooseButton(BuildContext context) async {
     closeBottomSheet(context, isCoordinatesSelected: true);
     final index = markerId - 1;
     context.read<MakeOrderViewModel>().addressControllers[index].text = selectedController.text;
-    context.read<MapViewModel>().createMarker(markerId, LatLng(cameraLat, cameraLng));
+    await context.read<MapViewModel>().createMarker(
+          markerId,
+          LatLng(cameraLat, cameraLng),
+        );
+    await context.read<MapViewModel>().drawRoad();
   }
 }

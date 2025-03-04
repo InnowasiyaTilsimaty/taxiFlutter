@@ -9,11 +9,12 @@ import '../../service/service.dart';
 
 class MapViewModel extends ChangeNotifier {
   StreamSubscription<LocationData>? locationSub;
-  final Map<String, bool> _symbolExists = {};
+  final Map<String, Symbol> _symbolExists = {};
+  final _locationService = LocationService();
   MapLibreMapController? mapController;
   SymbolManager? _symbolManager;
+  LineManager? _lineManager;
   LocationData? locationData;
-  final _locationService = LocationService();
 
   bool get locationLoading => locationData?.longitude == null && locationData?.latitude == null;
 
@@ -59,17 +60,18 @@ class MapViewModel extends ChangeNotifier {
       zIndex: markerCount,
     );
 
-    if (_symbolExists[symbolId] == true) {
+    if (_symbolExists.containsKey(symbolId)) {
       await _symbolManager?.set(Symbol(symbolId, options));
     } else {
       await _symbolManager?.add(Symbol(symbolId, options));
-      _symbolExists[symbolId] = true;
+      _symbolExists[symbolId] = Symbol(symbolId, options);
     }
   }
 
   Future<void> onMapCreated(MapLibreMapController controller) async {
     mapController = controller;
     _symbolManager = SymbolManager(controller);
+    _lineManager = LineManager(mapController!);
     await _symbolManager?.setIconAllowOverlap(true);
     await _symbolManager?.setTextAllowOverlap(true);
     await addCircle();
@@ -96,6 +98,7 @@ class MapViewModel extends ChangeNotifier {
       );
     }
     _symbolExists.clear();
+    await deleteRoad();
   }
 
   Future<void> addCircle() async {
@@ -125,6 +128,36 @@ class MapViewModel extends ChangeNotifier {
           iconSize: 1,
           zIndex: 0,
         ),
+      ),
+    );
+  }
+
+  Future<void> drawRoad() async {
+    final coordinates = _symbolExists.values
+        .map(
+          (e) => e.options.geometry ?? const LatLng(0, 0),
+        )
+        .toList();
+    final routes = await _locationService.fetchRoute(coordinates);
+
+    await _lineManager?.add(
+      Line(
+        '1',
+        LineOptions(
+          geometry: routes,
+          lineColor: '#2F57D3',
+          lineWidth: 4,
+          lineOpacity: 1,
+        ),
+      ),
+    );
+  }
+
+  Future<void> deleteRoad() async {
+    await _lineManager?.remove(
+      Line(
+        '1',
+        LineOptions.defaultOptions,
       ),
     );
   }

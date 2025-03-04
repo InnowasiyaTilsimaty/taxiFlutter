@@ -29,17 +29,20 @@ class MakeOrderViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void removeAddressController(BuildContext context, int index) {
+  Future<void> removeAddressController(BuildContext context, int index) async{
     if (index == 0) {
       closeBottomSheet(context);
     } else {
       addressControllers.removeAt(index);
       notifyListeners();
     }
+    await context.read<MapViewModel>().deleteMarker(index + 1);
+    await context.read<MapViewModel>().drawRoad();
   }
 
   void openBottomSheet(BuildContext context) {
     context.read<OrderViewModel>().closeBottomSheet(context);
+    context.read<MapViewModel>().drawRoad();
     _sheetController.animateTo(
       500,
       duration: const Duration(milliseconds: 300),
@@ -62,8 +65,8 @@ class MakeOrderViewModel extends ChangeNotifier {
         curve: Curves.easeInOut,
       )
           .then((_) {
-        clearAddressControllers();
         if (openOrderBottomSheet) {
+          clearAddressControllers();
           context.read<OrderViewModel>().openBottomSheet(context);
         }
         _isBottomSheetVisible = false;

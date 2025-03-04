@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:sheet/sheet.dart';
 
 import '../../configs/theme/app_colors.dart';

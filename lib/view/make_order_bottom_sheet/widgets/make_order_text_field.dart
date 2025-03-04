@@ -23,7 +23,7 @@ class MakeOrderTextField extends StatelessWidget {
             spacing: 12,
             children: [
               ...viewModel.addressControllers.mapIndexed(
-                    (controller, index) => _OrderTextField(
+                (controller, index) => _OrderTextField(
                   controller: controller,
                   index: index,
                 ),
@@ -36,15 +36,16 @@ class MakeOrderTextField extends StatelessWidget {
   }
 }
 
-
 class _OrderTextField extends StatelessWidget {
   final TextEditingController controller;
   final int index;
+
   const _OrderTextField({
     super.key,
     required this.controller,
     required this.index,
   });
+
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<MakeOrderViewModel>();
@@ -53,9 +54,8 @@ class _OrderTextField extends StatelessWidget {
     return Row(
       children: [
         IconButton(
-          onPressed: () => context
-              .read<MakeOrderViewModel>()
-              .removeAddressController(context, index),
+          onPressed: () =>
+              context.read<MakeOrderViewModel>().removeAddressController(context, index),
           style: ElevatedButton.styleFrom(
             minimumSize: const Size(24, 24),
             foregroundColor: AppColors.black,
@@ -83,7 +83,11 @@ class _OrderTextField extends StatelessWidget {
         ),
         const SizedBox(width: 10),
         IconButton(
-          onPressed: () => chooseLocationOnMapViewModel.openBottomSheet(context, index + 1),
+          onPressed: () => chooseLocationOnMapViewModel.openBottomSheet(
+            context,
+            index + 1,
+            atMakeOrder: true,
+          ),
           style: ElevatedButton.styleFrom(
             minimumSize: const Size(48, 48),
             shape: RoundedRectangleBorder(

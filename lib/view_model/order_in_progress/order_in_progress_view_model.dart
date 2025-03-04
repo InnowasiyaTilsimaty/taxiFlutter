@@ -38,7 +38,7 @@ class OrderInProgressViewModel extends ChangeNotifier {
 
   void closeBottomSheet(BuildContext context) {
     context.read<MapViewModel>().deleteAllMarkers();
-
+    context.read<MakeOrderViewModel>().clearAddressControllers();
     _sheetController.animateTo(
       0,
       duration: const Duration(milliseconds: 300),
