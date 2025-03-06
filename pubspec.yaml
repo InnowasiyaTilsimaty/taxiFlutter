@@ -23,6 +23,7 @@ dependencies:
   
   location: ^8.0.0
   maplibre_gl: ^0.21.0
+  flutter_compass: ^0.8.1
 
   shared_preferences: ^2.5.2
 

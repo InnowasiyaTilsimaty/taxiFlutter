@@ -17,6 +17,7 @@ class MapViewModel extends ChangeNotifier {
   LocationData? locationData;
 
   bool get locationLoading => locationData?.longitude == null && locationData?.latitude == null;
+
   Map<String, Symbol> get symbolExists => _symbolExists;
 
   void init() {
@@ -80,8 +81,6 @@ class MapViewModel extends ChangeNotifier {
     }
     await _symbolManager?.setIconAllowOverlap(true);
     await _symbolManager?.setTextAllowOverlap(true);
-    await addCircle();
-    await addMarker();
   }
 
   Future<void> deleteMarker(int symbolId) async {
@@ -105,37 +104,6 @@ class MapViewModel extends ChangeNotifier {
     }
     _symbolExists.clear();
     await deleteRoad();
-  }
-
-  Future<void> addCircle() async {
-    await mapController?.addCircle(
-      CircleOptions(
-        geometry: LatLng(
-          locationData?.latitude ?? 0,
-          locationData?.longitude ?? 0,
-        ),
-        circleRadius: 83.5,
-        circleColor: '#DCDFFF',
-        circleOpacity: 0.5,
-      ),
-    );
-  }
-
-  Future<void> addMarker() async {
-    await _symbolManager?.add(
-      Symbol(
-        'current',
-        SymbolOptions(
-          geometry: LatLng(
-            locationData?.latitude ?? 0,
-            locationData?.longitude ?? 0,
-          ),
-          iconImage: Assets.currentPosition,
-          iconSize: 1,
-          zIndex: 0,
-        ),
-      ),
-    );
   }
 
   Future<void> drawRoad() async {

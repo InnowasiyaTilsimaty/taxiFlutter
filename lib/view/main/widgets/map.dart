@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:maplibre_gl/maplibre_gl.dart';
 import '../../../configs/assets.dart';
 import '../../../view_model/view_model.dart';
+import 'compass.dart';
 
 class MapScreen extends StatefulWidget {
   const MapScreen({super.key});
@@ -49,6 +50,11 @@ class _MapScreenState extends State<MapScreen> {
                 ],
                 compassEnabled: false,
                 myLocationEnabled: true,
+              ),
+              const Positioned(
+                bottom: 117,
+                left: 25,
+                child: Compass(),
               ),
               if (chooseLocationOnMapViewModel.isBottomSheetVisible)
                 Center(
