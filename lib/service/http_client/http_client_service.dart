@@ -17,7 +17,7 @@ class HttpClientService {
       [
         InterceptorsWrapper(
           onRequest: (options, handler) {
-            final authToken = getIt<AuthService>().getUser()?.token;
+            final authToken = getIt<AuthService>().getToken()?.token;
             if (authToken != null) {
               options.headers[HttpHeaders.authorizationHeader] = 'Bearer $authToken';
             }

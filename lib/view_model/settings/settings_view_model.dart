@@ -4,8 +4,17 @@ import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../configs/snack_bar.dart';
+import '../../main.dart';
+import '../../model/model.dart';
+import '../../repository/repository.dart';
+import '../../service/auth/auth_service.dart';
 
 class SettingsViewModel extends ChangeNotifier {
+  final UserRepository userRepository;
+
+  SettingsViewModel({required this.userRepository});
+
+  final authService = getIt<AuthService>();
 
   void copyReferralCode(String text) {
     Clipboard.setData(
@@ -27,5 +36,19 @@ class SettingsViewModel extends ChangeNotifier {
       path: phoneNumber,
     );
     await launchUrl(launchUri);
+  }
+
+  Future<void> getMe() async {
+    try {
+      final result = await userRepository.getMe();
+      await authService.writeUser(result);
+    } catch (e) {
+      //ignore
+    }
+    notifyListeners();
+  }
+
+  GetMe? getUser() {
+    return authService.getUser();
   }
 }

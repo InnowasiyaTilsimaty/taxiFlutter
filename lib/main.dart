@@ -53,7 +53,11 @@ class TaksistApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(create: (context) => OrderInProgressViewModel()),
         ChangeNotifierProvider(create: (context) => OrderInProgressViewModel()),
-        ChangeNotifierProvider(create: (context) => SettingsViewModel()),
+        ChangeNotifierProvider(
+          create: (context) => SettingsViewModel(
+            userRepository: getIt<UserRepository>(),
+          ),
+        ),
         ChangeNotifierProvider(create: (context) => ChooseLocationOnMapViewModel()),
         ChangeNotifierProvider(
           create: (context) => SignupViewModel(

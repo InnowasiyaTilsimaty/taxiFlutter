@@ -9,7 +9,7 @@ final class SplashService {
   void checkState(BuildContext context) {
     Future<void>.delayed(const Duration(seconds: 2)).then(
       (value) async {
-        final user = getIt<AuthService>().prefsService.getString(PreferencesKeys.user);
+        final user = getIt<AuthService>().prefsService.getString(PreferencesKeys.token);
         if (user != null) {
           return Navigator.pushNamedAndRemoveUntil(
             context,
