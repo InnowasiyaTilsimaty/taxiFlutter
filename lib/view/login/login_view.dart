@@ -19,12 +19,6 @@ class _LoginViewState extends State<LoginView> {
   }
 
   @override
-  void dispose() {
-    context.read<LoginViewModel>().dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final loginViewModel = context.watch<LoginViewModel>();
     final themeTheme = Theme.of(context).textTheme;

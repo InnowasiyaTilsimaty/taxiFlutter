@@ -71,8 +71,13 @@ class MapViewModel extends ChangeNotifier {
 
   Future<void> onMapCreated(MapLibreMapController controller) async {
     mapController = controller;
-    _symbolManager = SymbolManager(controller);
-    _lineManager = LineManager(mapController!);
+  }
+
+  Future<void> onMapStyleLoaded() async {
+    if (mapController != null) {
+      _symbolManager = SymbolManager(mapController!);
+      _lineManager = LineManager(mapController!);
+    }
     await _symbolManager?.setIconAllowOverlap(true);
     await _symbolManager?.setTextAllowOverlap(true);
     await addCircle();

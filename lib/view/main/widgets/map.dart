@@ -42,11 +42,13 @@ class _MapScreenState extends State<MapScreen> {
                     await chooseLocationOnMapViewModel.getCameraPositionAddress(bounds);
                   }
                 },
+                onStyleLoadedCallback: () async => mapViewModel.onMapStyleLoaded(),
                 annotationOrder: const <AnnotationType>[
                   AnnotationType.circle,
                   AnnotationType.symbol,
                 ],
                 compassEnabled: false,
+                myLocationEnabled: true,
               ),
               if (chooseLocationOnMapViewModel.isBottomSheetVisible)
                 Center(

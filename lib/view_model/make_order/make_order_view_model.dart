@@ -41,14 +41,15 @@ class MakeOrderViewModel extends ChangeNotifier {
   }
 
   Future<void> removeAddressController(BuildContext context, int index) async {
+    final mapViewModel = context.read<MapViewModel>();
     if (index == 0) {
       closeBottomSheet(context);
     } else {
       addressControllers.removeAt(index);
       notifyListeners();
     }
-    await context.read<MapViewModel>().deleteMarker(index + 1);
-    await context.read<MapViewModel>().drawRoad();
+    await mapViewModel.deleteMarker(index + 1);
+    await mapViewModel.drawRoad();
   }
 
   void openBottomSheet(BuildContext context) {
