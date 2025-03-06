@@ -27,10 +27,15 @@ class OrderCard extends StatelessWidget {
           const Divider(),
           ListTile(
             minTileHeight: 48,
+            contentPadding: const EdgeInsets.only(left: 14, right: 10),
             leading: SvgPicture.asset(Assets.location),
             title: Text(
               'Mati kösaýew(Mopra,2024)',
               style: textTheme.headlineSmall,
+            ),
+            trailing: IconButton(
+              onPressed: (){},
+              icon: SvgPicture.asset(Assets.delete),
             ),
           ),
           const Divider(),

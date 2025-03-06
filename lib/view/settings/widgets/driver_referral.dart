@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 import '../../../configs/assets.dart';
@@ -14,6 +13,7 @@ class DriverReferral extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final textThemeEx = context.textThemeEx;
+    final user = context.watch<SettingsViewModel>().getUser();
     final settingsViewModel = context.read<SettingsViewModel>();
 
     return DecoratedBox(
@@ -36,7 +36,7 @@ class DriverReferral extends StatelessWidget {
                 const Spacer(),
                 IconButton(
                   onPressed: () => settingsViewModel.copyReferralCode(
-                    '1283938230923234567890',
+                    user?.referralCode ?? '',
                   ),
                   style: IconButton.styleFrom(
                     backgroundColor: Colors.transparent,
@@ -48,22 +48,32 @@ class DriverReferral extends StatelessWidget {
           ),
           const Divider(),
           const SizedBox(height: 3),
-          DecoratedBox(
-            decoration: BoxDecoration(
-              color: AppColors.white,
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: AppColors.gray),
+          InkWell(
+            onTap: () => showDialog<void>(
+              context: context,
+              builder: (context) {
+                return ShowQrCode(
+                  data: user?.referralCode ?? '',
+                );
+              },
             ),
-            child: QrImageView(
-              data: '1283938230923234567890',
-              size: 66,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                color: AppColors.white,
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: AppColors.gray),
+              ),
+              child: QrImageView(
+                data: user?.referralCode ?? '',
+                size: 66,
+              ),
             ),
           ),
           const SizedBox(height: 8),
           Padding(
             padding: const EdgeInsets.all(9),
             child: ElevatedButton(
-              onPressed: () => settingsViewModel.shareReferralCode('1283938230923234567890'),
+              onPressed: () => settingsViewModel.shareReferralCode(user?.referralCode ?? ''),
               child: Text(
                 'Share etmek',
                 style: textThemeEx.bodyLargeEx,
@@ -71,6 +81,31 @@ class DriverReferral extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class ShowQrCode extends StatelessWidget {
+  final String data;
+
+  const ShowQrCode({
+    super.key,
+    required this.data,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      backgroundColor: Colors.transparent,
+      alignment: Alignment.center,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: AppColors.white,
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: AppColors.gray),
+        ),
+        child: QrImageView(data: data),
       ),
     );
   }

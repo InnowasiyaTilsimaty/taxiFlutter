@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../../../configs/theme/app_colors.dart';
 import '../../../configs/theme/app_theme.dart';
+import '../../../view_model/view_model.dart';
 
 class PhoneTile extends StatelessWidget {
   const PhoneTile({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final user = context.watch<SettingsViewModel>().getUser();
     final textTheme = Theme.of(context).textTheme;
     final textThemeEx = context.textThemeEx;
 
@@ -19,7 +21,7 @@ class PhoneTile extends StatelessWidget {
         style: textThemeEx.titleSmallEx,
       ),
       subtitle: Text(
-        '+993 64929340',
+        '+993 ${user?.phone}',
         style: textTheme.titleLarge,
       ),
       shape: RoundedRectangleBorder(
