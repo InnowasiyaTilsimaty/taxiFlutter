@@ -37,3 +37,27 @@ Response _$ResponseFromJson(Map<String, dynamic> json) => Response(
 Map<String, dynamic> _$ResponseToJson(Response instance) => <String, dynamic>{
       'token': instance.token,
     };
+
+GetMe _$GetMeFromJson(Map<String, dynamic> json) => GetMe(
+      id: json['id'] as String?,
+      lastLogin: json['last_login'] as String?,
+      username: json['username'] as String?,
+      dateJoined: json['date_joined'] as String?,
+      phone: json['phone'] as String?,
+      qrCode: json['qr_code'] as String?,
+      referralCode: json['referral_code'] as String?,
+      parent: json['parent'] as String?,
+      parentName: json['parent_name'] as String?,
+    );
+
+Map<String, dynamic> _$GetMeToJson(GetMe instance) => <String, dynamic>{
+      'id': instance.id,
+      'last_login': instance.lastLogin,
+      'username': instance.username,
+      'date_joined': instance.dateJoined,
+      'phone': instance.phone,
+      'qr_code': instance.qrCode,
+      'referral_code': instance.referralCode,
+      'parent': instance.parent,
+      'parent_name': instance.parentName,
+    };

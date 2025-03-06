@@ -25,4 +25,12 @@ class UserApiRepository extends UserRepository {
       mapper: (data) => Response.fromJson(data as Map<String, dynamic>),
     );
   }
+
+  @override
+  Future<GetMe> getMe() async {
+    return httpClientService.httpClient.get(
+      AppUrl.getMe,
+      mapper: (data) => GetMe.fromJson(data as Map<String, dynamic>),
+    );
+  }
 }
